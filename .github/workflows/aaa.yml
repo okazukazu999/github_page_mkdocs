@@ -1,23 +1,47 @@
+name: Deploy mkdocs
+
 on:
-  push:
+  pull_request:
+    # PRのcloseをトリガーとしてjobを実行する
     branches:
       - master
+    types:
+      - closed
+
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - name: checkout branch 
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: configure git info
+        run: |
+          git config --global user.name "github-actions-for-deploy"
+          git config --global user.email deploy-actions@github.com
+      - name: check git status/branch
+        run: |
+          git status
+          git branch
+      # mkdocsを利用するためのpython環境のセットアップ
+      - name: setup python env
+        uses: actions/setup-python@v1
         with:
           python-version: '3.8'
-      - run: python -m pip install pipenv
-      # - run: python -m pipenv sync --dev
-      # - run: python -m pipenv sync
-      - run: pyhton -m pip install mkdocs
-      - run: python -m pipenv run mkdocs build
-      - uses: peaceiris/actions-gh-pages@v3
+
+      - name: install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      # ドキュメントの作成
+      - name: mkdocs build
+        run: |
+           mkdocs build --verbose --clean --strict
+      # ドキュメントのデプロイ
+      - name: mkdocs deploy
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          personal_token: ${{ secrets.PERSONAL_TOKEN }}
-          external_repository: github-user-name/github-repository-name
-          publish_branch: master
-          publish_dir: ./site
+           github_token: ${{ secrets.PERSONAL_TOKEN }}
+           publish_dir: site
