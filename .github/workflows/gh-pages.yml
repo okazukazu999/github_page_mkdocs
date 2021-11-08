@@ -52,12 +52,12 @@ jobs:
            publish_dir: site
            
       # Slackでの通知
-      - name: notify slack
-        uses: 8398a7/action-slack@v3
-        if: always()
-        with:
-          status: ${{ job.status }}
-          fields: repo,message,commit,author,action,eventName,ref,workflow  
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      #- name: notify slack
+      #  uses: 8398a7/action-slack@v3
+      #  if: always()
+      #  with:
+      #    status: ${{ job.status }}
+      #    fields: repo,message,commit,author,action,eventName,ref,workflow  
+      #  env:
+      #    SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
