@@ -46,6 +46,7 @@ jobs:
 
       - name: List files in the repository
         run: |
+	  date
           ls -ltrR ${{ github.workspace }}
 
       # ドキュメントのデプロイ
