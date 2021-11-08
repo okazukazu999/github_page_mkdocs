@@ -101,12 +101,17 @@ jobs:
         #-- 仮想マシン上でコマンドを実行 --#
 
 
+
+        if [[ $(aws s3 ls s3://${{ env.s3-bucket }}/ | wc -l) > 0 ]]; then
+          echo "Cache not found"
+        fi
+
         #if aws s3 ls "s3://$env.s3-bucket" 2>&1 | grep -q 'NoSuchBucket'
         #then
 
-        if [[ $(aws s3 ls s3://${{ env.s3-bucket }}/  | wc -l) > 0 ]]; then
-          echo "AAAAAAAAAAAAAAAAAA"
-        fi
+        #if [[ $(aws s3 ls s3://${{ env.s3-bucket }}/  | wc -l) > 0 ]]; then
+          #echo "AAAAAAAAAAAAAAAAAA"
+        #fi
 
       - name: Deploy to S3
         run:
