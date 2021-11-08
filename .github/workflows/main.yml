@@ -9,6 +9,10 @@ name: Deploy mkdocs
 #      - closed
 on: [push]
 
+env:
+  s3-bucket: test-20211105-99 
+
+
 jobs:
   deploy:
     runs-on: ubuntu-18.04
@@ -96,8 +100,8 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         #-- 仮想マシン上でコマンドを実行 --#
 
-        if: (aws s3 ls "s3://test-20211105-99/" | grep 'NoSuchBucket' &> /dev/null) == 1 )
-        run:  echo 'exists '
+        if [[ $(aws s3 ls s3://${{ env.s3-bucket }}/  | wc -l) > 0 ]]; then
+        run:  echo 's3 backect id exists '
 
       - name: Deploy to S3
         run:
