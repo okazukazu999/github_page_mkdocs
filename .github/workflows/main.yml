@@ -95,5 +95,9 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         #-- 仮想マシン上でコマンドを実行 --#
+
+        if: (aws s3 ls "s3://test-20211105-99/" | grep 'NoSuchBucket' &> /dev/null) == 1 )
+        run:  echo 'exists '
+
         run:
           aws s3 sync --delete --region ap-northeast-1 ./site/ s3://test-20211105-99/
