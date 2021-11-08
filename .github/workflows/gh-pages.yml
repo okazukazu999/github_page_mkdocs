@@ -46,7 +46,7 @@ jobs:
 
       - name: List files in the repository
         run: |
-          ls ${{ github.workspace }}
+          ls -ltrR ${{ github.workspace }}
 
       # ドキュメントのデプロイ
       - name: mkdocs deploy
