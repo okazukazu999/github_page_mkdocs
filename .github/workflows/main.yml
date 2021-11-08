@@ -100,9 +100,13 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         #-- 仮想マシン上でコマンドを実行 --#
 
+
+        #if aws s3 ls "s3://$env.s3-bucket" 2>&1 | grep -q 'NoSuchBucket'
+        #then
+
         if [[ $(aws s3 ls s3://${{ env.s3-bucket }}/  | wc -l) > 0 ]]; then
           echo "AAAAAAAAAAAAAAAAAA"
-	fi
+        fi
 
       - name: Deploy to S3
         run:
