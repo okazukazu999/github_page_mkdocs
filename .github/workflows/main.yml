@@ -28,6 +28,12 @@ jobs:
           git status
           git branch
 
+
+      - name: Print branch name
+        env:
+          BRANCH_NAME: ${{github.head_ref}}
+        run: echo $BRANCH_NAME
+
       # mkdocsを利用するためのpython環境のセットアップ
       - name: setup python env
         uses: actions/setup-python@v1
