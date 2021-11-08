@@ -12,6 +12,11 @@ jobs:
   deploy:
     runs-on: ubuntu-18.04
     steps:
+
+      - run: echo "Hello, World!"
+
+
+
       - name: checkout branch 
         uses: actions/checkout@v2
         with:
