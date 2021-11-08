@@ -44,9 +44,12 @@ jobs:
         run: |
            mkdocs build --verbose --clean --strict
 
+      -name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+
       - name: List files in the repository
         run: |
-	  date
           ls -ltrR ${{ github.workspace }}
 
       # ドキュメントのデプロイ
