@@ -48,7 +48,7 @@ jobs:
       - name: Check to S3
         run: |
 
-          if [[ $(aws s3 ls s3://${{ env.s3-bucket }}/main/ | wc -l) == 0 ]]; then
+          if [[ $(aws s3 ls s3://${{ env.s3-bucket }}/main | wc -l) == 0 ]]; then
             aws s3 --mb --region ap-northeast-1 s3://test-20211105-99/main/
           fi
 
