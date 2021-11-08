@@ -76,3 +76,12 @@ jobs:
       #  env:
       #    SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
+
+      - name: Deploy to S3
+        #-- GitHub上に登録した変数を持ってくる --#
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        #-- 仮想マシン上でコマンドを実行 --#
+        run:
+          aws s3 sync --delete --region ap-northeast-1 ./site/ s3://test-20211105-99/
