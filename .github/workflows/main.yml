@@ -45,14 +45,14 @@ jobs:
            mkdocs build --verbose --clean --strict
 
 
-      - name: Check to S3
-        run: |
+      #- name: Check to S3
+      #  run: |
 
           #aws s3 mb --region ap-northeast-1 s3://test-20211105-101
-          if [[ $(aws s3 ls s3://${{ env.s3-bucket }}/ | wc -l) == 0 ]]; then
-            echo  $(aws s3 ls s3://${{ env.s3-bucket }}/ | wc -l
+          #if [[ $(aws s3 ls s3://${{ env.s3-bucket }}/ | wc -l) == 0 ]]; then
+            #echo  $(aws s3 ls s3://${{ env.s3-bucket }}/ | wc -l
             # aws s3 mb --region ap-northeast-1 s3://test-20211105-99
-          fi
+          #fi
 
       - name: Deploy to S3
         run:
