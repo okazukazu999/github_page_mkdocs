@@ -101,7 +101,8 @@ jobs:
         #-- 仮想マシン上でコマンドを実行 --#
 
         if [[ $(aws s3 ls s3://${{ env.s3-bucket }}/  | wc -l) > 0 ]]; then
-        run: echo "AAAAAAAAAAAAAAAAAA"
+          echo "AAAAAAAAAAAAAAAAAA"
+	fi
 
       - name: Deploy to S3
         run:
