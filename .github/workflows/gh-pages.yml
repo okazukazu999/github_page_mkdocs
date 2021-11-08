@@ -1,12 +1,13 @@
 name: Deploy mkdocs
 
-on:
-  pull_request:
+# on:
+# pull_request:
     # PRのcloseをトリガーとしてjobを実行する
-    branches:
-      - master
-    types:
-      - closed
+#    branches:
+#      - master
+#    types:
+#      - closed
+on: [push]
 
 jobs:
   deploy:
