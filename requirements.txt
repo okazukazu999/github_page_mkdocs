@@ -6,3 +6,4 @@ fontawesome-markdown
 plantuml-markdown
 mkdocs-git-revision-date-localized-plugin
 python-markdown-math 
+mkdocs-awesome-pages-plugin
