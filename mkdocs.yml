@@ -1,5 +1,49 @@
-site_name: MkLorum
-pages:
-    - Home: index.md
-    - About: about.md
-theme: readthedocs
+site_name: Developers.IO ブログ用MkDocs
+docs_dir: 'docs'
+
+
+theme:
+  name: material  # MkDocs for Materialに表示スタイルを切替.
+  language: ja    # メニュー言語を日本語に変更.
+  icon:           # サイト名横のアイコン画像を変更.
+    logo: material/school
+    repo: fontawesome/brands/git-alt
+  favicon: images/favicon.png  # ファビコン画像の設定.
+  features:
+    - tabs   # タブ表示を有効化.
+
+
+# Navigation
+nav:
+    - はじめに: index.md
+    - クラスメソッドについて:
+        - クラスメソッドとは: classmethod.md
+        - メニュー:
+            - サービス: menu/services.md
+            - 事例: menu/usecases.md
+            - セミナー・相談会: menu/seminar.md
+    - CLPについて:
+        - CLPとは: clp.md
+
+
+markdown_extensions:
+    - admonition
+    - codehilite:
+        linenums: true
+        guess_lang: false
+        use_pygments: false
+        noclasses: true
+    - toc:
+        permalink: true
+    - fontawesome_markdown
+
+
+extra_css:
+    # ユーザー個別で効かせたい設定を記述.
+    - css/custom.css
+    # fontawesome_markdownで使える設定を別途追加.
+    - "https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"
+
+
+# Copyright
+copyright: 'Copyright © 2010 - 2020 - Classmethod, Inc.'
