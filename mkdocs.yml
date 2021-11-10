@@ -1,12 +1,1 @@
-# Project information
-site_name: 'master branch 20211110_1'
-
-# Documentation and theme
-docs_dir: 'docs'
-theme: 'material'
-
-# Extensions
-markdown_extensions:
-  - admonition
-  - toc:
-      permalink: '#'
+site_name: My Docs
