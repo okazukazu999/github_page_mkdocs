@@ -13,19 +13,6 @@ theme:
     - tabs   # タブ表示を有効化.
 
 
-# Navigation
-nav:
-    - はじめに: index.md
-    - クラスメソッドについて:
-        - クラスメソッドとは: classmethod.md
-        - メニュー:
-            - サービス: menu/services.md
-            - 事例: menu/usecases.md
-            - セミナー・相談会: menu/seminar.md
-    - CLPについて:
-        - CLPとは: clp.md
-
-
 markdown_extensions:
     - admonition
     - codehilite:
