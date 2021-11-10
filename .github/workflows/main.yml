@@ -57,5 +57,5 @@ jobs:
 
       - name: Deploy to S3
         run:
-          aws s3 sync --delete --region ap-northeast-1 ./site/ s3://test-20211105-99/
-          # aws s3 sync --delete --region ap-northeast-1 ./site/ s3://test-20211105-99/${{ steps.extract_branch.outputs.branch }}/
+          # aws s3 sync --delete --region ap-northeast-1 ./site/ s3://test-20211105-99/
+          aws s3 sync --delete --region ap-northeast-1 ./site/ s3://test-20211105-99/${{ steps.extract_branch.outputs.branch }}/
