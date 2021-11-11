@@ -1,9 +1,9 @@
 ###### Requirements ######
-mkdocs
-mkdocs-material
-pymdown-extensions
 fontawesome-markdown
-plantuml-markdown
-mkdocs-git-revision-date-localized-plugin
-python-markdown-math 
+mkdocs
 mkdocs-awesome-pages-plugin
+mkdocs-git-revision-date-localized-plugin
+mkdocs-material
+plantuml-markdown
+pymdown-extensions
+python-markdown-math
