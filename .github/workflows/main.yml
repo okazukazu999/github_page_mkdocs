@@ -3,20 +3,19 @@ name: Deploy mkdocs
 on: [push, pull_request]
 
 env:
-  s3-bucket: test-20211105-99 
+  s3-bucket: pilot-auto-documentation-test2 
+  REGION: ap-northeast-1
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
 
 jobs:
   deploy:
     runs-on: ubuntu-18.04
     steps:
-      - name: checkout branch 
+      - name: checkout branch
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-
 
       - name: Extract branch name
         shell: bash
@@ -29,10 +28,10 @@ jobs:
         run: echo $BRANCH_NAME
 
       # mkdocsを利用するためのpython環境のセットアップ
-      - name: setup python env
+      - name: Setup python env
         uses: actions/setup-python@v1
         with:
-          python-version: '3.8'
+          python-version: "3.8"
 
       - name: install dependencies
         run: |
@@ -42,20 +41,16 @@ jobs:
       # ドキュメントの作成
       - name: mkdocs build
         run: |
-           mkdocs build --verbose --clean --strict
-
-
+          mkdocs build --verbose --clean --strict
 
       # - name: Check to S3
       #
       #  run: |
 
       #   if [[ $(aws s3 ls s3://${{ env.s3-bucket }}/ | wc -l) == 0 ]]; then
-      #     aws s3 mb --region ap-northeast-1 s3://test-20211105-99/
+      #     aws s3 mb --region ap-northeast-1 s3://${{ env.s3-bucket }}/
       #   fi
-
 
       - name: Deploy to S3
         run:
-          # aws s3 sync --delete --region ap-northeast-1 ./site/ s3://test-20211105-99/
-          aws s3 sync --delete --region ap-northeast-1 ./site/ s3://test-20211105-99/${{ steps.extract_branch.outputs.branch }}/
+          aws s3 sync --delete --region ${{ env.REGION }} ./site/ s3://${{ env.s3-bucket }}/${{ steps.extract_branch.outputs.branch }}/
